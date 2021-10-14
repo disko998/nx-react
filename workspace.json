@@ -1,6 +1,47 @@
 {
   "version": 2,
   "projects": {
+    "data-access": {
+      "root": "libs/data-access",
+      "sourceRoot": "libs/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/data-access",
+            "tsConfig": "libs/data-access/tsconfig.lib.json",
+            "project": "libs/data-access/package.json",
+            "entryFile": "libs/data-access/src/index.ts",
+            "external": ["react/jsx-runtime"],
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+            "assets": [
+              {
+                "glob": "libs/data-access/README.md",
+                "input": ".",
+                "output": "."
+              }
+            ]
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/data-access/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/data-access"],
+          "options": {
+            "jestConfig": "libs/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "web": {
       "root": "apps/web",
       "sourceRoot": "apps/web/src",
